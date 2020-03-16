@@ -33,9 +33,12 @@
     "workers"
   ],
   "dependencies": {
-    "codemirror": "^5.48.4",
     "estree-walker": "^0.6.1",
     "sourcemap-codec": "^1.4.6",
     "yootils": "0.0.16"
+  },
+  "peerDependencies": {
+    "codemirror": "~5.48.4",
+    "svelte-preprocess-markdown": "~2.7.0"
   }
 }

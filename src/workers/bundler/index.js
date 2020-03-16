@@ -171,9 +171,13 @@ async function get_bundle(uid, mode, cache, lookup) {
 
 			self.postMessage({ type: 'status', uid, message: `bundling ${id}` });
 
-			if (!/\.svelte$/.test(id)) return null;
+			/* Modified: AlexxNB */
+			// if (!/\.svelte$/.test(id)) return null;
+			if (!/\.svelte$|\.md$/.test(id)) return null;
 
-			const name = id.split('/').pop().split('.')[0];
+			/* Modified: AlexxNB */
+			// const name = id.split('/').pop().split('.')[0];
+			const name = id.replace(/^\.\//, "").replace(/\.svelte$|\.md$/, "");
 
 			const result = cache[id] && cache[id].code === code
 				? cache[id].result
@@ -201,7 +205,9 @@ async function get_bundle(uid, mode, cache, lookup) {
 
 	try {
 		bundle = await rollup.rollup({
-			input: './App.svelte',
+			/* Modified: AlexxNB */
+			// input: './App.svelte',
+			input: './App.md',
 			plugins: [
 				repl_plugin,
 				commonjs,
