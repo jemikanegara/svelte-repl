@@ -76,6 +76,9 @@
 		svelte: {
 			name: 'handlebars',
 			base: 'text/html'
+		},
+		md: {
+			name: 'gfm'
 		}
 	};
 
@@ -158,6 +161,7 @@
 				name: mode
 			},
 			readOnly: readonly,
+			/* Removed: AlexxNB */
 			autoCloseBrackets: true,
 			autoCloseTags: true
 		};
