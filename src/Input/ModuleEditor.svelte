@@ -3,7 +3,7 @@
 	import CodeMirror from '../CodeMirror.svelte';
 	import Message from '../Message.svelte';
 
-	const { bundle, selected, handle_change, navigate, register_module_editor } = getContext('REPL');
+	const { bundle, selected, handle_change, register_module_editor } = getContext('REPL');
 
 	export let errorLoc;
 
@@ -28,6 +28,12 @@
 	.editor {
 		height: 0;
 		flex: 1 1 auto;
+	}
+
+	.info {
+		background-color: var(--second);
+		max-height: 50%;
+		overflow: auto;
 	}
 
 	:global(.columns) .editor-wrapper {

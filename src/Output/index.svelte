@@ -2,6 +2,7 @@
 	import { getContext, onMount } from 'svelte';
 	import SplitPane from '../SplitPane.svelte';
 	import Viewer from './Viewer.svelte';
+	import PaneWithPanel from './PaneWithPanel.svelte';
 	import CompilerOptions from './CompilerOptions.svelte';
 	import Compiler from './Compiler.js';
 	import CodeMirror from '../CodeMirror.svelte';
@@ -94,21 +95,10 @@
 		height: 100%;
 	}
 
-	section[slot] {
-		overflow: auto;
-	}
-
-	h3 {
-		font: 700 12px/1.5 var(--font);
-		padding: 12px 0 8px 10px;
-		/* color: var(--text); */
-		color: #333;
-	}
-
 	.tab-content {
 		position: absolute;
 		width: 100%;
-		height: calc(100% - 42px);
+		height: calc(100% - 42px) !important;
 		opacity: 0;
 		pointer-events: none;
 	}
@@ -177,8 +167,8 @@
 			readonly
 		/>
 	{:else}
-		<SplitPane type="vertical" pos={67}>
-			<div slot="a">
+		<PaneWithPanel pos={67} panel="Compiler options">
+			<div slot="main">
 				<CodeMirror
 					bind:this={js_editor}
 					mode="js"
@@ -187,12 +177,10 @@
 				/>
 			</div>
 
-			<section slot="b">
-				<h3>Compiler options</h3>
-
-				<CompilerOptions bind:foo={foo}/>
-			</section>
-		</SplitPane>
+			<div slot="panel-body">
+				<CompilerOptions/>
+			</div>
+		</PaneWithPanel>
 	{/if}
 </div>
 
