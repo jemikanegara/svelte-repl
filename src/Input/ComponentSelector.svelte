@@ -1,5 +1,5 @@
 <script>
-	import { getContext, createEventDispatcher } from 'svelte';
+	import { getContext } from 'svelte';
 
 	export let handle_select;
 
@@ -24,7 +24,12 @@
 		/* Modified: AlexxNB */
 		const match = /(.+)\.(svelte|js|md)$/.exec($selected.name);
 		$selected.name = match ? match[1] : $selected.name;
+		if (isComponentNameUsed($selected)) {
+			$selected.name = $selected.name + '_1';
+		}
 		if (match && match[2]) $selected.type = match[2];
+
+
 		editing = null;
 
 		// re-select, in case the type changed
@@ -78,6 +83,10 @@
 
 		components.update(components => components.concat(component));
 		handle_select(component);
+	}
+
+	function isComponentNameUsed(editing) {
+		return $components.find(component => component !== editing && component.name === editing.name);
 	}
 </script>
 
@@ -148,6 +157,10 @@
 		background-color: transparent;
 	}
 
+	.duplicate {
+		color: var(--prime);
+	}
+
 	.remove {
 		position: absolute;
 		display: none;
@@ -206,7 +219,7 @@
 <div class="component-selector">
 	{#if $components.length}
 		<div class="file-tabs" on:dblclick="{addNew}">
-			{#each $components as component}
+			{#each $components as component, index}
 				<div
 					id={component.name}
 					class="button"
@@ -215,7 +228,7 @@
 					on:click="{() => selectComponent(component)}"
 					on:dblclick="{e => e.stopPropagation()}"
 				>
-					{#if component.name == 'App'}
+					{#if component.name == 'App' && index === 0}
 						<div class="uneditable">
 							<!-- Modified: AlexxNB -->
 							<!-- App.svelte -->
@@ -232,7 +245,8 @@
 								bind:value={editing.name}
 								on:focus={selectInput}
 								on:blur={closeEdit}
-								on:keydown={e => e.which === 13 && e.target.blur()}
+								on:keydown={e => e.which === 13 && !isComponentNameUsed(editing) && e.target.blur()}
+								class:duplicate={isComponentNameUsed(editing)}
 							>
 						{:else}
 							<div
