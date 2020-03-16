@@ -77,7 +77,9 @@
 			base: 'text/html'
 		},
 		md: {
-			name: 'gfm'
+			base: 'gfm',
+			name: 'hypermd',
+        	hashtag: true
 		}
 	};
 
@@ -160,6 +162,13 @@
 				name: mode
 			},
 			readOnly: readonly,
+			hmdFold: {
+				image: true,
+				link: true,
+				math: false,
+				html: true, // maybe dangerous
+				emoji: true
+			},
 			/* Removed: AlexxNB */
 			autoCloseBrackets: true,
 			autoCloseTags: true

@@ -35,12 +35,11 @@
   "dependencies": {
     "codemirror": "~5.49.2",
     "estree-walker": "^0.9.0",
+    "hypermd": "~0.3.11",
     "sourcemap-codec": "^1.4.6",
     "svelte-json-tree": "0.0.5",
+    "svelte-preprocess-markdown": "~2.7.0",
     "yootils": "0.0.16"
   },
-  "peerDependencies": {
-    "codemirror": "~5.49.2",
-    "svelte-preprocess-markdown": "~2.7.0"
-  }
+  "peerDependencies": {}
 }
