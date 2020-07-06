@@ -7,6 +7,8 @@
 	import Output from './Output/index.svelte';
 	import Bundler from './Bundler.js';
 	import { is_browser } from './env.js';
+	/* Added: AlexxNB */
+	import { markdown } from "svelte-preprocess-markdown";
 
 	export let workersUrl;
 	export let packagesUrl = 'https://unpkg.com';
@@ -18,6 +20,18 @@
 	export let fixedPos = 50;
 	export let injectedJS = '';
 	export let injectedCSS = '';
+
+	/* Added: AlexxNB */
+	const preprocess = v =>
+		v.type === "md"
+		? {
+			...v,
+			source: markdown().markup({
+				content: v.source,
+				filename: v.name + ".md"
+			}).code
+		}
+		: v;
 
 	export function toJSON() {
 		return {
@@ -85,7 +99,8 @@
 	let current_token;
 	async function rebundle() {
 		const token = current_token = {};
-		const result = await bundler.bundle($components);
+		/* Modified: AlexxNB */
+		const result = await bundler.bundle($components.map(preprocess));
 		if (result && token === current_token) bundle.set(result);
 	}
 

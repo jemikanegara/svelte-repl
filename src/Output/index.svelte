@@ -62,7 +62,9 @@
 <style>
 	.view-toggle {
 		height: var(--pane-controls-h);
-		border-bottom: 1px solid #eee;
+		/* Modified: AlexxNB */
+		/* border-bottom: 1px solid #eee; */
+		border-bottom: 1px solid rgba(95, 158, 160, 0.5);
 		white-space: nowrap;
 		box-sizing: border-box;
 	}
@@ -79,8 +81,11 @@
 		padding: 12px 12px 8px 12px;
 		color: #999;
 		border-radius: 0;
+		/* Added: AlexxNB */
+		cursor: unset;
 	}
 
+	/* Removed: AlexxNB */
 	button.active {
 		border-bottom: 3px solid var(--prime);
 		color: #333;
@@ -103,6 +108,21 @@
 		opacity: 1;
 		pointer-events: all;
 	}
+
+	/* Added: AlexxNB */
+	.linkylink {
+		float: right;
+		margin: 10px 20px;
+		font-size: 14px;
+		font-family: "Fira Mono";
+		border-bottom: none;
+	}
+
+	/* Added: AlexxNB */
+	.linkylink:hover {
+		border-bottom: 1px solid cadetblue;
+		color: cadetblue;
+	}
 </style>
 
 <div class="view-toggle">
@@ -120,6 +140,9 @@
 		class:active="{view === 'css'}"
 		on:click="{() => view = 'css'}"
 	>CSS output</button>
+
+	<!-- Added: AlexxNB -->
+	<a class="linkylink" href="https://github.com/AlexxNB/svelte-preprocess-markdown">Github -></a>
 </div>
 
 <!-- component viewer -->

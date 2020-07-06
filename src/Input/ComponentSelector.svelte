@@ -21,7 +21,8 @@
 	}
 
 	function closeEdit() {
-		const match = /(.+)\.(svelte|js)$/.exec($selected.name);
+		/* Modified: AlexxNB */
+		const match = /(.+)\.(svelte|js|md)$/.exec($selected.name);
 		$selected.name = match ? match[1] : $selected.name;
 		if (isComponentNameUsed($selected)) {
 			$selected.name = $selected.name + '_1';
@@ -92,7 +93,9 @@
 <style>
 	.component-selector {
 		position: relative;
-		border-bottom: 1px solid #eee;
+		/* Modified: AlexxNB */
+		/* border-bottom: 1px solid #eee; */
+		border-bottom: 1px solid rgba(95, 158, 160, 0.5);
 		overflow: hidden;
 	}
 
@@ -135,7 +138,9 @@
 	}
 
 	.input-sizer {
-		color: #ccc;
+		/* Modified: AlexxNB */
+		/* color: #eee; */
+		color: #333;
 	}
 
 	input {
@@ -145,7 +150,9 @@
 		top: 12px;
 		font: 400 12px/1.5 var(--font);
 		border: none;
-		color: var(--flash);
+		/* Modified: AlexxNB */
+		/* color: var(--flash); */
+		color: #333;
 		outline: none;
 		background-color: transparent;
 	}
@@ -223,7 +230,9 @@
 				>
 					{#if component.name == 'App' && index === 0}
 						<div class="uneditable">
-							App.svelte
+							<!-- Modified: AlexxNB -->
+							<!-- App.svelte -->
+							App.md
 						</div>
 					{:else}
 						{#if component === editing}

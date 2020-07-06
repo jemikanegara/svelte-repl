@@ -99,7 +99,8 @@
 	.divider::after {
 		content: '';
 		position: absolute;
-		/* background-color: #eee; */
+		/* Modified: AlexxNB */
+		background-color: #eee;
 		background-color: var(--second);
 	}
 

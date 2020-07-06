@@ -1,5 +1,5 @@
 {
-  "name": "@sveltejs/svelte-repl",
+  "name": "svelte-repl",
   "version": "0.1.17",
   "description": "The <Repl> component used on the Svelte website",
   "main": "src/Repl.svelte",
@@ -20,7 +20,8 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.14.1"
+    "svelte": "^3.14.1",
+    "svelte-preprocess-markdown": "^2.7.0"
   },
   "repository": "https://github.com/sveltejs/svelte-repl",
   "author": "Rich Harris",
