@@ -81,7 +81,7 @@
 
 	const components = writable([]);
 	const selected = writable(null);
-	const bundle = writable(null);
+	export const bundle = writable(null);
 
 	const compile_options = writable({
 		generate: 'dom',

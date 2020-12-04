@@ -1,5 +1,5 @@
 {
-  "name": "svelte-repl",
+  "name": "@app/svelte-repl",
   "version": "0.1.17",
   "description": "The <Repl> component used on the Svelte website",
   "main": "src/Repl.svelte",
