@@ -236,7 +236,7 @@ async function get_bundle(uid, mode, cache, lookup) {
 }
 
 async function bundle({ uid, components }) {
-	console.clear();
+	// console.clear();
 	console.log(`running Svelte compiler version %c${svelte.VERSION}`, 'font-weight: bold');
 
 	const lookup = {};
@@ -263,7 +263,7 @@ async function bundle({ uid, components }) {
 			sourcemap: true
 		})).output[0];
 
-		const module_result = (await dom.bundle.generate({
+		const esm_result = (await dom.bundle.generate({
 			format: 'es',
 			name: 'SvelteComponent',
 			exports: 'named',
@@ -293,7 +293,7 @@ async function bundle({ uid, components }) {
 		return {
 			uid,
 			dom: dom_result,
-			module: module_result,
+			esm: esm_result,
 			ssr: ssr_result,
 			imports: dom.imports,
 			warnings: dom.warnings,
@@ -308,7 +308,7 @@ async function bundle({ uid, components }) {
 		return {
 			uid,
 			dom: null,
-			module: null,
+			esm: null,
 			ssr: null,
 			imports: null,
 			warnings: dom.warnings,
