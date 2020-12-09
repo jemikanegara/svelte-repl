@@ -26,7 +26,10 @@
 		v.type === "md"
 		? {
 			...v,
-			source: markdown().markup({
+			source: markdown({
+				breaks: true,
+				gfm: true
+			}).markup({
 				content: v.source,
 				filename: v.name + ".md"
 			}).code
